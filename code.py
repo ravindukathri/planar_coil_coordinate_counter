@@ -26,7 +26,7 @@ except ValueError:
     print("Invalid input. Please enter a valid integer.")
 
 
-calculate_coordinates()
+calculate_coordinates(x, y, d, s, n)
 
 print(f"List X = {list_x}")
 print(f"List Y = {list_y}")
@@ -112,14 +112,3 @@ def calculate_coordinates(x, y, d, s, n):
     list_y.extend([d, y - d, y - d, 0, 0])
 
     return list_x, list_y
-
-# Usage example:
-x = 10
-y = 20
-d = 2
-s = 3
-n = 5
-
-result_x, result_y = calculate_coordinates(x, y, d, s, n)
-print(result_x)
-print(result_y)
