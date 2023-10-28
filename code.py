@@ -78,9 +78,9 @@ while True:
     print(f"s: {s}")
     print(f"n: {n}")
 
-    if x < (2 * n + 2) * d + (2 * n + 1) * s:
+    if x < (2+(n-1)*2)* d + (1+(n-1)*2) * s:
         print("Your X value is smaller, please try again.")
-    elif y < (2 * n + 2) * d + (2 * n + 1) * s:
+    elif y < (2+(n-1)*2)* d + (1+(n-1)*2) * s:
         print("Your Y value is smaller, please try again.")
     else:
         list_x, list_y = generate_data_points(x, y, d, s, n)
