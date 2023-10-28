@@ -43,7 +43,7 @@ if max > 1:
         list_x = np.append(list_x,second_x)
         
         y1 = y-i*(d+s)
-        y2 = x-i*(d+s)
+        y2 = y-i*(d+s)
         y3 = i*(d+s)
         y4 = i*(s+d)
         second_y = [y1,y2,y3,y4]
