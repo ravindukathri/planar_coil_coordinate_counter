@@ -1,127 +1,105 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+def get_user_input(prompt):
+    return float(input(prompt))
 
-# Ask the user for values of x, y, d, s, and n
-x = float(input("Enter the value of x: "))
-y = float(input("Enter the value of y: "))
-d = float(input("Enter the value of d: "))
-s = float(input("Enter the value of s: "))
-n = int(input("Enter the value of n: "))
-
-# Display the entered values
-print(f"You entered the following values:")
-print(f"x: {x}")
-print(f"y: {y}")
-print(f"d: {d}")
-print(f"s: {s}")
-print(f"n: {n}")
-
-
-if x < (2 * n + 2) * d + (2 * n + 1) * s:
-    print("Your X value is smaller, please try again.")
-elif y < (2 * n + 2) * d + (2 * n + 1) * s:
-    print("Your Y value is smaller, please try again.")
-else:
-
-
-
-
-    # Convert the user's input to an integer (int)
+def get_integer_input(prompt):
     try:
-        data_points = int(11+(n-1)*8)
-        print(f"You entered the integer: {n}")
-        print(f"Numberof data points: {data_points}")
+        return int(input(prompt))
     except ValueError:
         print("Invalid input. Please enter a valid integer.")
+        return get_integer_input(prompt)
 
+def generate_data_points(x, y, d, s, n):
+    data_points = 11 + (n - 1) * 8
+    print(f"You entered the integer: {n}")
+    print(f"Number of data points: {data_points}")
 
-    # first 5 numbers   
-    list_x = [0,0,x,x,d+s]
-    list_y = [0,y,y,0,0]
+    list_x = [0, 0, x, x, d + s]
+    list_y = [0, y, y, 0, 0]
 
-    #Second Sets
+    for i in range(1, n):
+        x1 = i * (d + s)
+        x2 = x - i * (d + s)
+        x3 = x - i * (d + s)
+        x4 = (i + 1) * (d + s)
 
-    max = n
-    i=1
-    if max > 1:
-        while i<= max-1:
-            x1 = i*(d+s)
-            x2 = x-i*(d+s)
-            x3 = x-i*(d+s)
-            x4 = (i+1)*(d+s)
-            second_x = [x1,x2,x3,x4]
-            list_x = np.append(list_x,second_x)
-            
-            y1 = y-i*(d+s)
-            y2 = y-i*(d+s)
-            y3 = i*(d+s)
-            y4 = i*(s+d)
-            second_y = [y1,y2,y3,y4]
-            list_y = np.append(list_y,second_y)
-            
-            i+= 1
-        
+        second_x = [x1, x2, x3, x4]
+        list_x = np.append(list_x, second_x)
 
+        y1 = y - i * (d + s)
+        y2 = y - i * (d + s)
+        y3 = i * (d + s)
+        y4 = i * (s + d)
 
-    # Center Number
-    center_x =  n*(d+s)
-    center_y = (n-1)*s+n*d
-    list_x = np.append(list_x,center_x)
+        second_y = [y1, y2, y3, y4]
+        list_y = np.append(list_y, second_y)
+
+    center_x = n * (d + s)
+    center_y = (n - 1) * s + n * d
+
+    list_x = np.append(list_x, center_x)
     list_y = np.append(list_y, center_y)
 
-    #Last Sets
-    max = n
-    i=1
-    j=max-1
-    if max > 1:
-        while j>= 1:
-            x5 = x-(j+1)*d-(j)*s
-            x6 = x-(j+1)*d-(j)*s
-            x7 = (j+1)*d+(j)*s
-            x8 = (j+1)*d+(j)*s
-            last_x = [x5,x6,x7,x8]
-            list_x = np.append(list_x,last_x)
-            
-            y5 = (j+1)*d+(j)*s
-            y6 = y-(j+1)*d-(j)*s
-            y7 = y-(j+1)*d-(j)*s
-            y8 = j*d+(j-1)*s
-            last_y = [y5,y6,y7,y8]
-            list_y = np.append(list_y,last_y)
-            
-            j -=1
+    for j in range(n - 1, 0, -1):
+        x5 = x - (j + 1) * d - (j) * s
+        x6 = x - (j + 1) * d - (j) * s
+        x7 = (j + 1) * d + (j) * s
+        x8 = (j + 1) * d + (j) * s
 
+        last_x = [x5, x6, x7, x8]
+        list_x = np.append(list_x, last_x)
 
+        y5 = (j + 1) * d + (j) * s
+        y6 = y - (j + 1) * d - (j) * s
+        y7 = y - (j + 1) * d - (j) * s
+        y8 = j * d + (j - 1) * s
 
+        last_y = [y5, y6, y7, y8]
+        list_y = np.append(list_y, last_y)
 
-    #last 5 numbers
-    list_x = np.append(list_x, [x-d,x-d,d,d,0])
-    list_y = np.append(list_y, [d,y-d,y-d,0,0])
+    list_x = np.append(list_x, [x - d, x - d, d, d, 0])
+    list_y = np.append(list_y, [d, y - d, y - d, 0, 0])
 
-    print(f"List X = {list_x}")
-    print(f"List Y = {list_y}")
+    return list_x, list_y
 
+while True:
+    x = get_user_input("Enter the value of x: ")
+    y = get_user_input("Enter the value of y: ")
+    d = get_user_input("Enter the value of d: ")
+    s = get_user_input("Enter the value of s: ")
+    n = get_integer_input("Enter the value of n: ")
 
-    #Paired Values
-    paired_values = [(x, y) for x, y in zip(list_x, list_y)]
+    print("You entered the following values:")
+    print(f"x: {x}")
+    print(f"y: {y}")
+    print(f"d: {d}")
+    print(f"s: {s}")
+    print(f"n: {n}")
 
-    for x, y in paired_values:
-        print(f"{x}, {y}")
+    if x < (2 * n + 2) * d + (2 * n + 1) * s:
+        print("Your X value is smaller, please try again.")
+    elif y < (2 * n + 2) * d + (2 * n + 1) * s:
+        print("Your Y value is smaller, please try again.")
+    else:
+        list_x, list_y = generate_data_points(x, y, d, s, n)
 
+        print(f"List X = {list_x}")
+        print(f"List Y = {list_y}")
 
-    # Create a plot
-    plt.plot(list_x, list_y, marker='o', linestyle='-', color='b')
+        paired_values = [(x, y) for x, y in zip(list_x, list_y)]
 
-    # Set axis labels
-    plt.xlabel('X-axis')
-    plt.ylabel('Y-axis')
+        for x, y in paired_values:
+            print(f"{x}, {y}")
 
-    # Set a title for the plot
-    plt.title('Data Points Plot')
+        plt.plot(list_x, list_y, marker='o', linestyle='-', color='b')
+        plt.xlabel('X-axis')
+        plt.ylabel('Y-axis')
+        plt.title('Data Points Plot')
+        plt.grid()
+        plt.show()
 
-    # Show the plot
-    plt.grid()
-    plt.show()
-        
-    
+    run_again = input("Do you want to run the script again? (yes/no): ").lower()
+    if run_again != "yes":
+        break
