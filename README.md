@@ -1,6 +1,6 @@
-# Developed by Ravindu Kathriarachchie (github.com/ravindukathri)
-
 # Planar Coil Coordinate Counter
+
+# Developed by Ravindu Kathriarachchie (github.com/ravindukathri)
 
 This Python script helps you generate the coordinates of a planar coil based on the provided parameters. It calculates the coordinates for a planar coil with specified dimensions and properties.
 
