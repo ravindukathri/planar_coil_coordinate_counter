@@ -80,3 +80,5 @@ The generated coordinates would be as follows:
 ```
 
 These coordinates can be used to visualize the planar coil's shape.
+
+Have fun!!!
