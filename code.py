@@ -93,6 +93,8 @@ while True:
         for x, y in paired_values:
             print(f"{x}, {y}")
 
+            #add option to download this as a txt file to the file
+
         plt.plot(list_x, list_y, marker='o', linestyle='-', color='b')
         plt.xlabel('X-axis')
         plt.ylabel('Y-axis')
