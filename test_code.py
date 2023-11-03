@@ -92,6 +92,16 @@ while True:
 
         for x, y in paired_values:
             print(f"{x}, {y}")
+        
+        # Ask the user for the desired filename
+        filename = input("Enter the filename to save the text file: ")
+
+        # Open the user-specified text file in write mode
+        with open(filename, 'w') as file:
+            for value1, value2 in zip(x, y):
+                file.write(f'{x}, {y}\n')  # Write each pair of values to the file
+
+        print(f"Values from both arrays have been saved to '{filename}'")
 
         plt.plot(list_x, list_y, marker='o', linestyle='-', color='b')
         plt.xlabel('X-axis')
