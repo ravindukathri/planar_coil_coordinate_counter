@@ -91,7 +91,7 @@ while True:
         paired_values = [(x, y) for x, y in zip(list_x, list_y)]
 
         for x, y in paired_values:
-            print(f"{x}, {y}")
+            print(f"{x} {y}")
         
         # Ask the user for the desired filename
         filename = input("Enter the filename to save the text file: ")
@@ -102,7 +102,7 @@ while True:
         # Open the user-specified text file in write mode
         with open(filename, 'w') as file:
             for value1, value2 in zip(list_x, list_y):
-                file.write(f'{value1}, {value2}\n')  # Write each pair of values to the file
+                file.write(f'{value1} {value2}\n')  # Write each pair of values to the file
 
         print(f"Values from both arrays have been saved to '{filename}'")
 
