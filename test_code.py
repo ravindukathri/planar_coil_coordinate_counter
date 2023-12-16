@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import openpyxl
+
 
 def get_user_input(prompt):
     return float(input(prompt))
@@ -103,6 +105,25 @@ while True:
         with open(filename, 'w') as file:
             for value1, value2 in zip(list_x, list_y):
                 file.write(f'{value1} {value2}\n')  # Write each pair of values to the file
+
+        ## Excel File
+                
+        # Add the .xlsx extension to the filename
+        filename = filename + ".xlsx"
+
+        # Create a new Excel workbook and select the active sheet
+        workbook = openpyxl.Workbook()
+        sheet = workbook.active
+
+        # Write the values to the Excel file
+        for value1, value2 in zip(list_x, list_y):
+            sheet.append([value1, value2])
+
+        # Save the Excel file
+        workbook.save(filename)
+
+        # Close the Excel file
+        workbook.close()
 
         print(f"Values from both arrays have been saved to '{filename}'")
 
